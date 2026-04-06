@@ -1,10 +1,10 @@
-= セクション２
+== セクション２:インストールと初期設定をしよう
 
 * gitの初期設定
 * ユーザー情報登録：（git config --global user.name "名前”）     メールアドレス登録：（git config --global user.email ”メールアドレス”）
 * 設定確認：（git config user.名前）   （git config user.メールアドレス）　　　★一気に確認する：（git config  --list）
 
-= セクション３
+== セクション３:GitとGitHubの仕組みと基本的なコマンド
 
 * (cd)：ディレクトリに移動
 * (ls -a)すべてのディレクトリを見る
@@ -32,7 +32,7 @@
 * 構成するとき：(config)
 * パスワードが記載されているファイルは「.gitignone」ファイルに指定する
 
-= セクション４
+== セクション４:変更を元に戻そう
 
 * 空ファイルを作成する：(touch ファイル名)
 * ステージに追加されていない場合は(untracked files)と出力される
@@ -44,7 +44,7 @@
 ※プッシュ後には使わない。
 * ログが長くなったときは「Q」を押して区切ることができる
 
-= セクション５
+== セクション５:GitHubとやり取りしよう
 
 * リモートリポジトリ＝github=ネットワーク上の保管庫
 * リモートリポジトリを表示する：(git remote)  →対応するURLを表示：(git remote -v)
@@ -64,7 +64,7 @@
 * リモート名変更：(git remote rename 旧リモート名　新リモート名)
 * リモート削除：(git remote rm リモート名)
 
-= セクション６
+== セクション６:ブランチとマージを使いこなそう
 
 * おおもとのブランチ→master branch
 * ブランチとは→並行して複数機能を開発する際、効率的に作業を進めることができる +
@@ -87,10 +87,10 @@
 * コンフリクト→同じファイルに対して複数人が異なる変更をしたとき、どのブランチを優先するか迷う状態 +
 ★(both modified)→これが出たときはコンフリクトが起きており、最終的なファイル内容を書き換えることで解決。 +
  ※コンフリクトを起こさないための心がけ +
-⓵同じファイルを複数人で変更しないこと。 +
-⓶pullやmergeする前に変更中のファイルをなくしておく。（コミットなどしておく） +
-⓷pullするときはpullするブランチに移動してから行う。 +
-　(例)featureブランチにいる状態で、masterブランチにpullしようとしたら、featureブランチにmergeされる。 +
+. 同じファイルを複数人で変更しないこと +
+. pullやmergeする前に変更中のファイルをなくしておく（コミットなどしておく） +
+. pullするときはpullするブランチに移動してから行う +
+(例)featureブランチにいる状態で、masterブランチにpullしようとしたら、featureブランチにmergeされる。 +
 * ブランチ名変更：(git branch -m ブランチ名)
 * ブランチを削除：(git branch -d ブランチ名)(-dはマージされていないものは残せる） +
 　　　　　　　　(git branch -D ブランチ名)(-Dはすべて削除）
@@ -99,38 +99,37 @@
 　→まず、git fetch original master→すると、リモートリポジトリにはブランチ名masterで登録されているが、ローカルリポジトリ内にはブランチ名original/masterとして保存される。
 * リモートリポジからローカルリポジに取得する：(git fetch リモートブランチ)
 
-= セクション７
+== セクション７:GitHubを利用した開発手順の流れ
 
 * プルリクエスト→自分の変更したコードをリポジトリに取り込んでもらえるよう依頼する機能 +
-
-１masterブランチを最新に更新 +
-２ブランチを作成 +
-３ファイルを変更 +
-４変更をコミット +
-５githubへプッシュ +
-６プルリクエストを送る +
-７コードレビュー +
-８プルリクエストをmerge +
+. masterブランチを最新に更新 +
+. ブランチを作成 +
+. ファイルを変更 +
+. 変更をコミット +
+. githubへプッシュ +
+. プルリクエストを送る +
+. コードレビュー +
+. プルリクエストをmerge +
 
 * githubFlow +
 ★point +
-　masterブランチは常にデプロイできる状態に保つ +
-　定期的にpushする +
-　必ずレビューを受ける +
-　開発フローの簡易化 +
-　デプロイ出来たらgithubのmaster内容を自分のワークツリーに取り込む：(git pulloriginal master) +
-　開発で使ったbranchを削除：(git branch -d ブランチ名)
+・masterブランチは常にデプロイできる状態に保つ +
+・定期的にpushする +
+・必ずレビューを受ける +
+・開発フローの簡易化 +
+・デプロイ出来たらgithubのmaster内容を自分のワークツリーに取り込む：(git pulloriginal master) +
+・開発で使ったbranchを削除：(git branch -d ブランチ名)
 * masterブランチの最新化：(git pull リモート名 ブランチ名)
 
-= セクション８
+== セクション８:リベースと変更履歴を修正しよう
 
 * リベース→変更統合する際に履歴をきれいにするときに使う：(git rebase ブランチ名) +
 ★mergeと似ているが、ほかのブランチの変更分を取り込む+履歴が整えられる +
-　「例」masterブランチの中にfeatureブランチの内容を取り込みたい（履歴もtきれいにしたい） +
-1featureブランチに移動する：(git checkout feature) +
-2(git rebase master)を入力するとmasterブランチが親コミット(commit２)になる。現commit３ +
-3masterブランチに切り替える：(git checkout master) +
-4(git merge feature)入力するとmasterブランチのコミットがcommit３’になる。
+「例」masterブランチの中にfeatureブランチの内容を取り込みたい（履歴もtきれいにしたい） +
+. featureブランチに移動する：(git checkout feature) +
+. (git rebase master)を入力するとmasterブランチが親コミット(commit２)になる。現commit３ +
+. masterブランチに切り替える：(git checkout master) +
+. (git merge feature)入力するとmasterブランチのコミットがcommit３’になる。
 * リベースとマージの違い +
 〇mergeの場合は新しいcommitが作成される。mergeは親コミットが複数なる。
 * ファストフォワードにならない設定：(git config --glibal merge.ff false) +
