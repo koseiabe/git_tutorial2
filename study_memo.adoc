@@ -121,4 +121,16 @@
 　デプロイ出来たらgithubのmaster内容を自分のワークツリーに取り込む：(git pulloriginal master) +
 　開発で使ったbranchを削除：(git branch -d ブランチ名)
 * masterブランチの最新化：(git pull リモート名 ブランチ名)
-* 
+
+= セクション８
+
+* リベース→変更統合する際に履歴をきれいにするときに使う：(git rebase ブランチ名) +
+★mergeと似ているが、ほかのブランチの変更分を取り込む+履歴が整えられる +
+　「例」masterブランチの中にfeatureブランチの内容を取り込みたい（履歴もtきれいにしたい） +
+1featureブランチに移動する：(git checkout feature) +
+2(git rebase master)を入力するとmasterブランチが親コミット(commit２)になる。現commit３ +
+3masterブランチに切り替える：(git checkout master) +
+4(git merge feature)入力するとmasterブランチのコミットがcommit３’になる。
+* リベースとマージの違い +
+〇mergeの場合は新しいcommitが作成される。mergeは親コミットが複数なる。
+* ファストフォワードにならない設定：(git config --glibal merge.ff false) +
