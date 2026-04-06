@@ -1,135 +1,113 @@
-セクション２
-〇gitの初期設定
+= セクション２
 
-　ユーザー情報登録：git config --global user.name 　"名前”
-　メールアドレス登録：git config --global user.email メールアドレス
-　設定確認：git config user.name
-　　　　　　git config user.email
-　★一気に確認する：git config  --list
-　
-セクション３
-〇git config --global core.editor "atom --wait"は入力しないで進める。
-〇cd ディレクトリに移動
-〇ls -a すべてのディレクトリを見る
-〇aliasは覚えるまでは正式で入力する。例：commit,status,checkoutなど
-〇cdで移動できるのはあくまでディレクトリ。
-　lsで表示されるのはディレクトリの中にあるファイル。
-〇「cd ..」で一つの前のディレクトリに戻る。
-〇.gitディレクトリが作成：git init
-〇ディレクトリ作成：mkdirディレクトリ名
-〇コマンドの成功有無：echo $?→0なら成功
-　　　　　　　　　　　　　　 →1ならエラー
-〇git clone：Github上あるプロジェクトから始める場合
-〇git add .：変更をステージに追加する（ステージはコミットする準備）
-〇.や　がひとつでも違うとエラーになる。
-〇不安になったらgit statusで確認する。
+* gitの初期設定
+* ユーザー情報登録：（git config --global user.name "名前”）     メールアドレス登録：（git config --global user.email ”メールアドレス”）
+* 設定確認：（git config user.名前）   （git config user.メールアドレス）　　　★一気に確認する：（git config  --list）
 
-〇commit時のメッセージ入力後、「esc fn lock」を押して、「:wq」で終了する。
-〇commit　-m<メッセージ>のほうが楽にできる。
-〇何を変更したかを確認する（add時）：git diff
-　　　　　　　　　　　　　（commit前）：git diff --staged
-〇変更履歴を見る：git log
-〇ファイルごと削除：git rm
-　ファイルは残してgitからは削除したい：git rm --cached
-〇ファイル復元：git reset head ファイル名
-　　　　　　　　→git checkout ファイル名
-〇ファイル名変更：git mv 旧ファイル 新ファイル
-〇githubを新規追加：git remote add origin
-　githubへ送信　　：git push リモート名 ブランチ名
-　     　　　　　　 →git push origin master
-〇リモートの設定を消す：git remote remove リモート名
-〇gitをプッシュする：git push original master
-〇構成するとき：config
-〇パスワードが記載されているファイル：「.gitignone」ファイルに指定する
+= セクション３
 
-セクション４
-〇空ファイルを作成する：touch ファイル名
-〇ステージに追加されていない状態：untracked files
-〇ファイルの変更を取り消す：git checkout -- ファイル名
-　ディレクトリの変更を取り消す：git checkout -- ディレクトリ名
-〇ステージした変更を取消す：git reset head ファイル名
-　　　　　　　　　　　　　 git reset head ディレクトリ名
-〇head:最新の状態
-〇直前のcommitをやり直す：git commit --amend
-　→ワークツリー変更→git add→ステージ保存→git commit amend→直前commitに上書き
-　※プッシュ後には使わない。
-〇ログが長くなったときは「Q」を押して区切ることができる
+* (cd)：ディレクトリに移動
+* (ls -a)すべてのディレクトリを見る
+* aliasは覚えるまでは正式で入力する。例：commit,status,checkoutなど
+* cdで移動できるのはあくまでディレクトリ。lsで表示されるのはディレクトリの中にあるファイル。
+* (cd ..)で一つの前のディレクトリに戻る。
+* .gitディレクトリが作成：(git init)
+* ディレクトリ作成：(mkdirディレクトリ名)
+* コマンドの成功有無：(echo $?)→「0」なら成功 →「1」ならエラー
+* Github上あるプロジェクトから始める場合:(git clone)
+* 変更をステージに追加する（ステージはコミットする準備）：(git add .)
+* 「.」や「　」がひとつでも違うとエラーになる。
+* 不安になったら(git status)で確認する。
+* commit時のメッセージ入力後、「esc fn lock」を押して、(:wq)で終了する。
+* (commit -m<メッセージ>)のほうが楽にできる。
+* 何を変更したかを確認する「add時」：(git diff)    「commit前」：(git diff --staged)
+* 変更履歴を見る：(git log)
+* ファイルごと削除：(git rm)  ファイルは残してgitからは削除したい：(git rm --cached)
+* ファイル復元：(git reset head ファイル名) →(git checkout ファイル名)
+* ファイル名変更：(git mv 旧ファイル 新ファイル)
+* githubを新規追加：(git remote add リモート名)
+* githubへ送信：(git push リモート名 ブランチ名)
+* リモートの設定を消す：(git remote remove リモート名)
+* githubにプッシュする：(git push original master)
+* 構成するとき：(config)
+* パスワードが記載されているファイルは「.gitignone」ファイルに指定する
 
-セクション５
-〇リモートリポジトリ＝github=ネットワーク上の保管庫
-〇リモートリポジトリを表示する：git remote
-　→対応するURLを表示：git remote -v
-〇リモートリポジトリ追加：git remote add リモート名リモートURL
-　　　　　　　　　　　　→リモート名は自分の好きなものでよい
-〇リモートから情報取得（フェッチ）：git fetch リモート名
-　→リモートリポジトリからローカルリポジトリに反映される
-　　そのため、ワークツリーには反映されない
-〇フェッチした後、ワークツリーに反映させたい(統合)：git merge
-〇ファイルの中身を見る:cat
-〇すべての情報を反映：-a
-〇branch：枝
-〇checkout＝branchの切り替え、切り替えなど
-〇branchからワークツリーに戻るとき：git checkout master
-〇一度にリモートリポジトリからワークツリーに反映させる
-　：git pull リモート名　ブランチ名
-　★git fetch リモート名　ブランチ名　→　 git merge リモート名/ブランチ名　
-　　→このようにfetchしてbranchの2段階を１回で処理できる
-　※基本的にpullよりfetchを使う
-　　今いるbranchにmergeされる。
-　　hogebranchに入れたいがmasterbranchにいる状態だとごちゃごちゃになる
-〇リモートの詳細情報を表示：git remote show リモート名
-〇リモート名変更：git remote rename 旧リモート名　新リモート名
-　リモート削除　：git remote rm リモート名
+= セクション４
 
-セクション６
-〇大元のブランチ→master branch
-〇ブランチとは→並行して複数機能を開発するため
-　Bさん：レコメンド追加
-　Aさん：ヘッダーを修正
-　★ブランチを分岐させながら開発していけるので他の開発の影響を受けにくい
-〇branchはcommitを指示したポインタ
-〇headは自分が作業しているbranchを差し示す
-〇commitしたらbranchも変わる。最新のcommitに切り替わる
-〇branch(masterやfeature),head(ref:feature)などのファイルはリポジトリに記録されている
+* 空ファイルを作成する：(touch ファイル名)
+* ステージに追加されていない場合は(untracked files)と出力される
+* ファイルの変更を取り消す：(git checkout -- ファイル名)          
+* ディレクトリの変更を取り消す：(git checkout -- ディレクトリ名)
+* ステージした変更を取消す：(git reset head ファイル名)             (git reset head ディレクトリ名)
+* 最新の状態：(head)
+* 直前のcommitをやり直す：(git commit --amend)  「→ワークツリー変更→git add→ステージ保存→git commit amend→直前commitに上書き」
+※プッシュ後には使わない。
+* ログが長くなったときは「Q」を押して区切ることができる
+
+= セクション５
+
+* リモートリポジトリ＝github=ネットワーク上の保管庫
+* リモートリポジトリを表示する：(git remote)  →対応するURLを表示：(git remote -v)
+* リモートリポジトリ追加：(git remote add リモート名 リモートURL)
+* リモートリポジトリ(github)から情報取得（フェッチ）：(git fetch リモート名)
+　※リモートリポジトリからローカルリポジトリに反映される。ワークツリーには反映されない
+* フェッチした後、ワークツリーに反映させたい(統合)：(git merge)
+* ファイルの中身を見る:(cat)
+* すべての情報を反映：(-a)
+* branch：枝
+* checkout→branchの切り替え、切り替えなど
+* branchからワークツリーに戻るとき：(git checkout ブランチ名)
+* 一度にリモートリポジトリからワークツリーに反映させる：(git pull リモート名 ブランチ名) +
+ →このようにfetchしてbranchの2段階を１回で処理できる。※現在いるbranchにmergeされるため注意が必要。
+* (git fetch リモート名 ブランチ名)→　(git merge リモート名 ブランチ名)
+* リモートの詳細情報を表示：(git remote show リモート名)
+* リモート名変更：(git remote rename 旧リモート名　新リモート名)
+* リモート削除：(git remote rm リモート名)
+
+= セクション６
+
+* おおもとのブランチ→master branch
+* ブランチとは→並行して複数機能を開発する際、効率的に作業を進めることができる +
+★ブランチを分岐させながら開発していけるので他の開発の影響を受けにくい
+* branchはcommitを指示したポインタ
+* headは自分が作業しているbranchを差し示す
+* commitしたらbranchも変わる。最新のcommitに切り替わる
+* branch(masterやfeature),head(ref:feature)などのファイルはリポジトリに記録されている +
 　→.git/head  .git/refs/の下に保存されている
-〇ブランチ作成：git branch ブランチ名
+* ブランチ作成：(git branch ブランチ名) +
 　※ブランチは作成されるが切り替えまではされない headまでは動かない
-〇ブランチ一覧表示：git branch -a
-〇ブランチがどのコミットを指しているか確認：git branch --oneline --decorate
-〇ブランチを切り替える：git checkout 既存ブランチ名
-※ブランチを新規作成して切り替える：git checkout -b 新ブランチ名
-〇tabキー：候補を表示してくれる
-〇変更履歴をマージする：git merge ブランチ名
-　　　　　　　　　　　　git merge リモート名/ブランチ名
- ★ほかのブランチで開発しているものを自分のブランチに取り込める
-〇マージ種類
-　fast foward：ポインタを先に進める
-　auto merge：基本的な→マージコミットは親コミットを2つ持つ
-〇コンフリクト→同じファイルに対して複数人が異なる変更をしたとき、どのブランチを優先するか迷う
-　★both modified:      ファイル名　→これが出たときはコンフリクトが起きている。
-　　最終的なファイル内容を書き換えることで解決。いらないテキスト部分は削除
-〇コンフリクトを起こさないようにするには
-　→同じファイルを複数人で変更しない
-　　pullやmergeする前に変更中のファイルをなくしておく（コミットなどしておく）
-　　pullするときはpullするブランチに移動してから行う
-　　例え：featureブランチにいる状態で、masterブランチにpullしようとしたら、featureブランチにmergeされる。
-〇ブランチ名変更：git branch -m ブランチ名
-　ブランチを削除：git branch -d ブランチ名（-dはマージされていないものは残せる）
-　　　　　　　   git branch -D ブランチ名（-Dはすべて削除）
-〇masterブランチはリリース用、開発用はトピックブランチを作って進める
-〇リモートリポジトリにあるmasterブランチをローカルリポジトリに持ってくるとき
-　→まず、git fetch original master→すると、リモートリポジトリにはブランチ名masterで登録されているが、
-　　ローカルリポジトリ内にはブランチ名original/masterとして保存される。
-〇リモートリポジからローカルリポジに取得する：git fetch リモートブランチ 
+* ブランチ一覧表示：(git branch -a)
+* ブランチがどのコミットを指しているか確認：(git branch --oneline --decorate)
+* ブランチを切り替える：(git checkout 既存ブランチ名) +
+  ※ランチを新規作成して切り替える：(git checkout -b 新ブランチ名)
+* tabキー：候補を表示してくれる
+* 変更履歴をマージする：(git merge ブランチ名)    (git merge リモート名/ブランチ名) +
+  ★ほかのブランチで開発しているものを自分のブランチに取り込める
+* auto merge：基本的な→マージコミットは親コミットを2つ持つ
+* コンフリクト→同じファイルに対して複数人が異なる変更をしたとき、どのブランチを優先するか迷う状態 +
+★(both modified)→これが出たときはコンフリクトが起きており、最終的なファイル内容を書き換えることで解決。 +
+ ※コンフリクトを起こさないための心がけ +
+⓵同じファイルを複数人で変更しないこと。 +
+⓶pullやmergeする前に変更中のファイルをなくしておく。（コミットなどしておく） +
+⓷pullするときはpullするブランチに移動してから行う。 +
+　(例)featureブランチにいる状態で、masterブランチにpullしようとしたら、featureブランチにmergeされる。 +
+* ブランチ名変更：(git branch -m ブランチ名)
+* ブランチを削除：(git branch -d ブランチ名)(-dはマージされていないものは残せる） +
+　　　　　　　　(git branch -D ブランチ名)(-Dはすべて削除）
+* masterブランチはリリース用、開発用はトピックブランチを作って進める
+* リモートリポジトリにあるmasterブランチをローカルリポジトリに持ってくるとき +
+　→まず、git fetch original master→すると、リモートリポジトリにはブランチ名masterで登録されているが、ローカルリポジトリ内にはブランチ名original/masterとして保存される。
+* リモートリポジからローカルリポジに取得する：(git fetch リモートブランチ)
 
-セクション７
-〇プルリクエスト→自分の変更したコードをリポジトリに取り込んでもらえるよう依頼する機能
-　①masterブランチを最新に更新
-　②ブランチを作成
-　③ファイルを変更
-　④変更をコミット
-　⑤githubへプッシュ
-　⑥プルリクエストを送る
-　⑦コードレビュー
-　⑧プルリクエストをmerge
+= セクション７
+
+* プルリクエスト→自分の変更したコードをリポジトリに取り込んでもらえるよう依頼する機能 +
+　①masterブランチを最新に更新 +
+　②ブランチを作成 +
+　③ファイルを変更 +
+　④変更をコミット +
+　⑤githubへプッシュ +
+　⑥プルリクエストを送る +
+　⑦コードレビュー +
+　⑧プルリクエストをmerge +
 　
