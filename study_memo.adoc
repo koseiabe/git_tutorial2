@@ -134,3 +134,5 @@
 * リベースとマージの違い +
 〇mergeの場合は新しいcommitが作成される。mergeは親コミットが複数なる。
 * ファストフォワードにならない設定：(git config --glibal merge.ff false) +
+* pushする前には、githubの最新状態をローカルpullしてから行うことが重要！！
+* commitを取消す：(git reset --hard "HEAD~1か2")1と2の入力は何個前までを消すか
